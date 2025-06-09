@@ -3,6 +3,7 @@
 <head>
   <!-- 提供 iOS Universal Link 的 meta tag（可保留） -->
   <meta name="apple-itunes-app" content="app-id=860552248, app-argument=myURL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
   <title>Deeplink test網頁</title>
   <style>
@@ -71,6 +72,7 @@
       } else {
         // 其他平台（如桌機）
         console.log("非行動裝置");
+        alert("偵測到非行動裝置，將導向 官網");
         // 桌機或不明平台跳轉官網
         window.location = "https://www.irentcar.com.tw/";
       }, 2000); // 2 秒延遲，避免使用者感知太快
