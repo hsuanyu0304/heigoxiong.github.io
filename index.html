@@ -2,27 +2,43 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>開啟 App 中...</title>
+  <title>開啟 iRent App 中...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>
     window.onload = function () {
-      // App 的 Deep Link
-      const deepLink = "https://hsuanyu0304.github.io/FriendCode?point_code=ir165";
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-      // 備援跳轉：沒裝 App 時的商店網址（Android）
-      const fallbackURL = "https://play.google.com/store/apps/details?id=com.cht.easyrent.irent";
+      // 判斷平台
+      const isAndroid = /android/i.test(userAgent);
+      const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
 
-      // 嘗試打開 App
-      window.location.href = deepLink;
+      // Deeplink 設定（根據你 App 支援的 URI Scheme）
+      const deeplink = "irent://home"; // ← 如果你的 App 支援其他頁面，可調整此 URI
 
-      // 2 秒後跳轉商店（如果沒開啟 App）
-      setTimeout(() => {
-        window.location.href = fallbackURL;
-      }, 2000);
+      // 商店連結
+      const androidStoreURL = "https://play.google.com/store/apps/details?id=com.cht.easyrent.irent";
+      const iosStoreURL = "https://apps.apple.com/app/id6450998721"; // 請確認實際的 iRent App Store ID
+
+      // 嘗試開啟 App
+      window.location = deeplink;
+
+      // 延遲轉跳商店
+      setTimeout(function () {
+        if (isAndroid) {
+          window.location = androidStoreURL;
+        } else if (isIOS) {
+          window.location = iosStoreURL;
+        } else {
+          // 桌機或不明平台跳轉官網
+          window.location = "https://www.irentcar.com.tw/";
+        }
+      }, 2000); // 2 秒延遲，避免使用者感知太快
     };
   </script>
 </head>
 <body>
-  <p>正在為您開啟 App，若未自動開啟，將轉向下載頁面...3</p>
+  <h2>正在開啟 iRent App...</h2>
+  <p>如果未自動開啟，將為您導向 App 商店。</p>
 </body>
 </html>
+
