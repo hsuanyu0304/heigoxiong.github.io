@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.cht.easyrent.irent",
+    "sha256_cert_fingerprints":
+      ["BB:09:A5:AB:EB:8A:FE:19:F1:97:C4:FA:2D:51:AB:F0:C5:2A:16:1E:95:12:0F:1F:92:3C:9A:9D:04:1C:CF:7E"]
+  }
+}]

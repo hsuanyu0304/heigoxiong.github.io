@@ -1,0 +1,36 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["9QG4MJ3936.com.cht.easyrent.iRent"],
+        "components": [
+	    {
+               "#": "no_universal_links",
+               "exclude": true,
+               "comment": "Matches any URL whose fragment equals no_universal_links and instructs the system not to open it as a universal link"
+            },
+            {
+                "/": "/FriendCode/*",
+                "comment": "Matches any URL whose path starts with /FriendCode/"
+            },
+            {
+               "/": "/MileStone/*",
+                "comment": "Matches any URL whose path starts with /MileStone/"
+            },  
+            {
+                "/": "/reserve_car/*",
+               "comment": "Matches any URL whose path starts with /reserve_car/"
+            },
+            {
+                "/": "/open_app/*",
+                "comment": "Matches any URL whose path starts with /open_app/"
+            },
+            {
+                "/": "/booking/*",
+                "comment": "Matches any URL whose path starts with /booking/"
+            },
+        ]
+      }
+    ]
+  }
+}
