@@ -60,22 +60,36 @@
     const isIOS = /iPhone|iPad|iPod/.test(userAgent) && !window.MSStream;
     const isAndroid = /android/i.test(userAgent);
 
-    if (isIOS) {
-      // iOS 專屬作動（例如打開 App、顯示提示或導商店）
-      console.log("偵測到 iOS 裝置");
-      // 範例：顯示提示（你也可以導向 app store 或 deeplink）
-      alert("偵測到 iOS 裝置，請確認是否安裝 iRent App");
-      // window.location.href = "irent://home"; // 若要自動開啟 App
-    } else if (isAndroid) {
-      // Android 專屬作動
-      console.log("偵測到 Android 裝置");
-      alert("偵測到 Android 裝置，將導向 iRent App");
-      window.location.href = "irent://home"; // 若 App 支援自定 deep link
-    } else {
-      // 其他平台（如桌機）
-      console.log("非行動裝置");
-      window.location = "https://www.irentcar.com.tw/";
-    }
+    // Deeplink 設定（根據你 App 支援的 URI Scheme）
+    const deeplink = "irent://home"; // ← 如果你的 App 支援其他頁面，可調整此 URI
+ 
+    // 商店連結
+    const androidStoreURL = "https://play.google.com/store/apps/details?id=com.cht.easyrent.irent";
+    const iosStoreURL = "https://apps.apple.com/app/id860552248"; // 請確認實際的 iRent App Store ID
+ 
+    // 嘗試開啟 App
+    window.location = deeplink;
+
+    // 延遲轉跳商店
+    setTimeout(function () {
+      if (isIOS) {
+        // iOS 專屬作動（例如打開 App、顯示提示或導商店）
+        console.log("偵測到 iOS 裝置");
+        // 範例：顯示提示（你也可以導向 app store 或 deeplink）
+        alert("偵測到 iOS 裝置，請確認是否安裝 iRent App");
+        // window.location = iosStoreURL;
+      } else if (isAndroid) {
+        // Android 專屬作動
+        console.log("偵測到 Android 裝置");
+        alert("偵測到 Android 裝置，將導向 iRent App");
+        window.location = androidStoreURL;
+      } else {
+        // 其他平台（如桌機）
+        console.log("非行動裝置");
+        // 桌機或不明平台跳轉官網
+        window.location = "https://www.irentcar.com.tw/";
+      }, 2000); // 2 秒延遲，避免使用者感知太快
+    };
   };
 </script>
 
