@@ -1,7 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>開啟 App 中...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    window.onload = function () {
+      // App 的 Deep Link
+      const deepLink = "myapp://home";
+
+      // 備援跳轉：沒裝 App 時的商店網址（Android）
+      const fallbackURL = "https://play.google.com/store/apps/details?id=com.cht.easyrent.irent";
+
+      // 嘗試打開 App
+      window.location.href = deepLink;
+
+      // 2 秒後跳轉商店（如果沒開啟 App）
+      setTimeout(() => {
+        window.location.href = fallbackURL;
+      }, 2000);
+    };
+  </script>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+  <p>正在為您開啟 App，若未自動開啟，將轉向下載頁面...</p>
 </body>
 </html>
